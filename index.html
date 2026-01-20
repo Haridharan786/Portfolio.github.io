@@ -1,181 +1,12 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hari | Full Stack Developer</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    
-    body { 
-      background: #0f172a; 
-      color: #e5e7eb; 
-      overflow: hidden; /* Prevents manual scrolling */
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Container for all sections */
-    .content-wrapper {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    /* Sections are hidden by default */
-    section {
-      display: none; 
-      max-width: 800px;
-      padding: 40px;
-      text-align: center;
-      animation: fadeIn 0.6s ease-in-out;
-    }
-
-    /* The "Active" section is shown */
-    section.active { display: block; }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    header h1 { font-size: 3.5rem; margin-bottom: 10px; }
-    header span { color: #fde047; }
-    
-    h2 { color: #60a5fa; margin-bottom: 20px; font-size: 2rem; }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .skill-card {
-      background: #1e293b;
-      padding: 15px;
-      border-radius: 8px;
-      border: 1px solid #334155;
-    }
-
-    .project-card {
-      background: #1e293b;
-      padding: 30px;
-      border-radius: 15px;
-      border-left: 5px solid #9333ea;
-      text-align: left;
-    }
-
-    button {
-      background: linear-gradient(135deg, #2563eb, #9333ea);
-      color: white;
-      border: none;
-      padding: 15px 35px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-size: 1.1rem;
-      margin-top: 30px;
-      transition: transform 0.2s;
-    }
-
-    button:hover { transform: scale(1.05); }
-
-    footer {
-      padding: 20px;
-      text-align: center;
-      background: #020617;
-      font-size: 0.8rem;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="content-wrapper">
-    
-    <section id="step-1" class="active">
-      <h1>Hello, I'm <span>Hari</span></h1>
-      <p id="typing" style="font-size: 1.5rem; height: 1.6em; color: #94a3b8;"></p>
-      <button onclick="nextStep(2)">Know More</button>
-    </section>
-
-    <section id="step-2">
-      <h2>About Me</h2>
-      <p>I am a Full Stack Developer passionate about bridging the gap between design and functional code. I specialize in building scalable web applications with modern tech stacks.</p>
-      <button onclick="nextStep(3)">See My Skills</button>
-    </section>
-
-    <section id="step-3">
-      <h2>Technical Stack</h2>
-      <div class="skills-grid">
-        <div class="skill-card">React</div>
-        <div class="skill-card">Node.js</div>
-        <div class="skill-card">Express.js</div>
-        <div class="skill-card">SQL</div>
-        <div class="skill-card">Java</div>
-        <div class="skill-card">Full Stack</div>
-      </div>
-      <button onclick="nextStep(4)">View Projects</button>
-    </section>
-
-    <section id="step-4">
-      <h2>Featured Project</h2>
-      <div class="project-card">
-        <h3>Screenshot-to-Code</h3>
-        <p style="margin: 15px 0; color: #cbd5e1;">
-          An AI-powered tool that converts design mockups into clean HTML/CSS/React code using neural networks and OpenAI APIs.
-        </p>
-        <small>Tech: React, Tailwind, AI API</small>
-      </div>
-      <button onclick="nextStep(5)">Contact Me</button>
-    </section>
-
-    <section id="step-5">
-      <h2>Let's Connect</h2>
-      <p>Email: <strong>haridharan2325@gmail.com</strong></p>
-      <p>Phone: <strong>+91 9159369172</strong></p>
-      <button onclick="nextStep(1)">Start Over</button>
-    </section>
-
-  </div>
-
-  <footer>© 2026 Hari | Full Stack Java Developer</footer>
-
-  <script>
-    // Typing Effect
-    const text = "Full Stack Java Developer | React Expert";
-    let index = 0;
-    function typeEffect() {
-      if (index < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(index);
-        index++;
-        setTimeout(typeEffect, 60);
-      }
-    }
-    window.onload = typeEffect;
-
-    // Logic to switch sections "one by one"
-    function nextStep(stepNumber) {
-      // Hide all sections
-      const sections = document.querySelectorAll('section');
-      sections.forEach(s => s.classList.remove('active'));
-
-      // Show the specific section
-      document.getElementById('step-' + stepNumber).classList.add('active');
-    }
-  </script>
-</body>
-</html> -->
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hari | Portfolio</title>
+<title>Hari | Full Stack Developer</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- REAL TECH ICONS (DEVICON) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
 <style>
 *{
@@ -194,6 +25,7 @@ body{
   justify-content:center;
 }
 
+/* Sections */
 .section{
   display:none;
   max-width:900px;
@@ -219,30 +51,42 @@ span{
 }
 
 p{
-  margin-bottom:20px;
   line-height:1.6;
+  margin-bottom:20px;
 }
 
+/* Skills */
 .skills ul{
   list-style:none;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:12px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:15px;
 }
 
 .skills li{
   background:#1e293b;
-  padding:14px;
-  border-radius:10px;
+  padding:15px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  justify-content:center;
+  font-size:1.05rem;
 }
 
+.skills i{
+  font-size:2rem;
+}
+
+/* Project */
 .project{
   background:#1e293b;
   padding:25px;
-  border-radius:14px;
+  border-radius:16px;
   text-align:left;
 }
 
+/* Button */
 button{
   background:#2563eb;
   color:white;
@@ -258,6 +102,7 @@ button:hover{
   background:#1d4ed8;
 }
 
+/* Footer */
 footer{
   margin-top:30px;
   font-size:0.9rem;
@@ -280,22 +125,25 @@ footer{
 <div class="section">
   <h2>About Me</h2>
   <p>
-    I am a Full Stack Java Developer with strong knowledge in modern
-    web technologies. I enjoy transforming ideas into real-world
-    applications with clean, scalable, and efficient code.
+    I am a Full Stack Java Developer with strong experience in building
+    modern web applications. I enjoy converting ideas and designs into
+    scalable, efficient, and user-friendly solutions.
   </p>
   <button onclick="nextSection()">Next</button>
 </div>
 
-<!-- SKILLS -->
+<!-- SKILLS (REAL ICONS) -->
 <div class="section skills">
   <h2>Skills</h2>
   <ul>
-    <li>Java (Core & Backend)</li>
-    <li>React.js (Frontend)</li>
-    <li>Node.js & Express.js</li>
-    <li>SQL Database</li>
-    <li>HTML, CSS, JavaScript</li>
+    <li><i class="devicon-java-plain"></i> Java</li>
+    <li><i class="devicon-react-original"></i> React.js</li>
+    <li><i class="devicon-nodejs-plain"></i> Node.js</li>
+    <li><i class="devicon-express-original"></i> Express.js</li>
+    <li><i class="devicon-mysql-plain"></i> SQL (MySQL)</li>
+    <li><i class="devicon-html5-plain"></i> HTML5</li>
+    <li><i class="devicon-css3-plain"></i> CSS3</li>
+    <li><i class="devicon-javascript-plain"></i> JavaScript</li>
   </ul>
   <br>
   <button onclick="nextSection()">Next</button>
@@ -306,20 +154,20 @@ footer{
   <h2>Project</h2>
   <div class="project">
     <h3>Screenshot-to-Code</h3>
-    <p><strong>Objective:</strong> Automatically convert UI screenshots into working code.</p>
+    <p><strong>Objective:</strong> Automatically convert UI screenshots into usable source code.</p>
     <p>
       This project bridges the gap between design and development by
-      analyzing screenshots or mockups and generating corresponding
-      source code.
+      analyzing images or mockups and identifying UI elements such as
+      buttons, text, layouts, and containers.
     </p>
     <p>
-      <strong>Technology:</strong> AI models analyze visual elements
-      such as layouts, text, buttons, and containers, then translate
-      them into HTML, CSS, and modern frameworks like React or Tailwind CSS.
+      <strong>Technology:</strong> AI models process visual data and
+      translate it into structured markup and styling.
     </p>
     <p>
-      <strong>Output:</strong> Clean, structured code that helps
-      developers and designers rapidly build prototypes and web pages.
+      <strong>Output:</strong> Generates HTML, CSS, and advanced
+      framework-ready code such as React or Tailwind CSS, enabling rapid
+      prototyping and development.
     </p>
   </div>
   <br>
@@ -333,10 +181,11 @@ footer{
   <p><strong>Phone:</strong> +91 9159369172</p>
 
   <footer>
-    © 2026 Hari | Portfolio
+    © 2026 Hari | Full Stack Developer
   </footer>
 </div>
 
+<!-- JAVASCRIPT -->
 <script>
 /* Typing Effect */
 const text = "Full Stack Java Developer | React | Node.js";
