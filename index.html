@@ -1,174 +1,368 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hari | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
+  <title>Hari | Full Stack Developer</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    
+    body { 
+      background: #0f172a; 
+      color: #e5e7eb; 
+      overflow: hidden; /* Prevents manual scrolling */
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    body {
-      background: #0f172a;
-      color: #e5e7eb;
-      line-height: 1.6;
-    }
-
-    header {
-      min-height: 100vh;
+    /* Container for all sections */
+    .content-wrapper {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      background: linear-gradient(135deg, #2563eb, #9333ea);
-      padding: 20px;
+      position: relative;
     }
 
-    header h1 {
-      font-size: 3rem;
-    }
-
-    header span {
-      color: #fde047;
-    }
-
+    /* Sections are hidden by default */
     section {
-      max-width: 900px;
-      margin: auto;
-      padding: 60px 20px;
-    }
-
-    h2 {
-      color: #60a5fa;
-      margin-bottom: 20px;
-    }
-
-    .skills ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 10px;
-    }
-
-    .skills li {
-      background: #1e293b;
-      padding: 12px;
-      border-radius: 8px;
-      list-style: none;
+      display: none; 
+      max-width: 800px;
+      padding: 40px;
       text-align: center;
+      animation: fadeIn 0.6s ease-in-out;
     }
 
-    .project {
+    /* The "Active" section is shown */
+    section.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header h1 { font-size: 3.5rem; margin-bottom: 10px; }
+    header span { color: #fde047; }
+    
+    h2 { color: #60a5fa; margin-bottom: 20px; font-size: 2rem; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .skill-card {
       background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+    }
+
+    .project-card {
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 15px;
+      border-left: 5px solid #9333ea;
+      text-align: left;
     }
 
     button {
-      background: #2563eb;
+      background: linear-gradient(135deg, #2563eb, #9333ea);
       color: white;
       border: none;
-      padding: 12px 20px;
-      border-radius: 30px;
+      padding: 15px 35px;
+      border-radius: 50px;
       cursor: pointer;
-      transition: 0.3s;
+      font-size: 1.1rem;
+      margin-top: 30px;
+      transition: transform 0.2s;
     }
 
-    button:hover {
-      background: #1d4ed8;
-    }
+    button:hover { transform: scale(1.05); }
 
     footer {
-      text-align: center;
       padding: 20px;
+      text-align: center;
       background: #020617;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
     }
   </style>
 </head>
-
 <body>
 
-  <!-- HERO -->
-  <header>
-    <div>
+  <div class="content-wrapper">
+    
+    <section id="step-1" class="active">
       <h1>Hello, I'm <span>Hari</span></h1>
-      <p id="typing"></p>
-      <br>
-      <button onclick="scrollToSection('about')">Know More</button>
-    </div>
-  </header>
+      <p id="typing" style="font-size: 1.5rem; height: 1.6em; color: #94a3b8;"></p>
+      <button onclick="nextStep(2)">Know More</button>
+    </section>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I am a motivated professional with skills in web design, desktop publishing,
-      and business-related projects. I enjoy learning new technologies and creating
-      clean, user-friendly designs.
-    </p>
-  </section>
+    <section id="step-2">
+      <h2>About Me</h2>
+      <p>I am a Full Stack Developer passionate about bridging the gap between design and functional code. I specialize in building scalable web applications with modern tech stacks.</p>
+      <button onclick="nextStep(3)">See My Skills</button>
+    </section>
 
-  <!-- SKILLS -->
-  <section class="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>HTML & CSS</li>
-      <li>JavaScript</li>
-      <li>MS Word, Excel, PowerPoint</li>
-      <li>Desktop Publishing</li>
-      <li>Basic Design Tools</li>
-    </ul>
-  </section>
+    <section id="step-3">
+      <h2>Technical Stack</h2>
+      <div class="skills-grid">
+        <div class="skill-card">React</div>
+        <div class="skill-card">Node.js</div>
+        <div class="skill-card">Express.js</div>
+        <div class="skill-card">SQL</div>
+        <div class="skill-card">Java</div>
+        <div class="skill-card">Full Stack</div>
+      </div>
+      <button onclick="nextStep(4)">View Projects</button>
+    </section>
 
-  <!-- PROJECTS -->
-  <section>
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>Consumer Satisfaction on Toothpaste</h3>
-      <p>
-        A research project analyzing customer satisfaction, preferences,
-        and buying behavior using survey data.
-      </p>
-    </div>
-  </section>
+    <section id="step-4">
+      <h2>Featured Project</h2>
+      <div class="project-card">
+        <h3>Screenshot-to-Code</h3>
+        <p style="margin: 15px 0; color: #cbd5e1;">
+          An AI-powered tool that converts design mockups into clean HTML/CSS/React code using neural networks and OpenAI APIs.
+        </p>
+        <small>Tech: React, Tailwind, AI API</small>
+      </div>
+      <button onclick="nextStep(5)">Contact Me</button>
+    </section>
 
-  <!-- CONTACT -->
-  <section>
-    <h2>Contact</h2>
-    <p>Email: yourmail@gmail.com</p>
-  </section>
+    <section id="step-5">
+      <h2>Let's Connect</h2>
+      <p>Email: <strong>haridharan2325@gmail.com</strong></p>
+      <p>Phone: <strong>+91 9159369172</strong></p>
+      <button onclick="nextStep(1)">Start Over</button>
+    </section>
 
-  <footer>
-    <p>© 2026 Hari | Portfolio</p>
-  </footer>
+  </div>
 
-  <!-- JavaScript -->
+  <footer>© 2026 Hari | Full Stack Java Developer</footer>
+
   <script>
     // Typing Effect
-    const text = "Web Designer | Developer | Creative Thinker";
+    const text = "Full Stack Java Developer | React Expert";
     let index = 0;
-
     function typeEffect() {
       if (index < text.length) {
         document.getElementById("typing").innerHTML += text.charAt(index);
         index++;
-        setTimeout(typeEffect, 80);
+        setTimeout(typeEffect, 60);
       }
     }
-    typeEffect();
+    window.onload = typeEffect;
 
-    // Smooth Scroll
-    function scrollToSection(id) {
-      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    // Logic to switch sections "one by one"
+    function nextStep(stepNumber) {
+      // Hide all sections
+      const sections = document.querySelectorAll('section');
+      sections.forEach(s => s.classList.remove('active'));
+
+      // Show the specific section
+      document.getElementById('step-' + stepNumber).classList.add('active');
     }
   </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hari | Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+  background:#0f172a;
+  color:#e5e7eb;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.section{
+  display:none;
+  max-width:900px;
+  padding:40px 20px;
+  text-align:center;
+}
+
+.section.active{
+  display:block;
+}
+
+h1{
+  font-size:3rem;
+}
+
+h2{
+  color:#60a5fa;
+  margin-bottom:20px;
+}
+
+span{
+  color:#fde047;
+}
+
+p{
+  margin-bottom:20px;
+  line-height:1.6;
+}
+
+.skills ul{
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:12px;
+}
+
+.skills li{
+  background:#1e293b;
+  padding:14px;
+  border-radius:10px;
+}
+
+.project{
+  background:#1e293b;
+  padding:25px;
+  border-radius:14px;
+  text-align:left;
+}
+
+button{
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:12px 28px;
+  border-radius:30px;
+  cursor:pointer;
+  font-size:1rem;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#1d4ed8;
+}
+
+footer{
+  margin-top:30px;
+  font-size:0.9rem;
+  color:#94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<div class="section active">
+  <h1>Hello, I'm <span>Hari</span></h1>
+  <p id="typing"></p>
+  <br>
+  <button onclick="nextSection()">Know More</button>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+  <h2>About Me</h2>
+  <p>
+    I am a Full Stack Java Developer with strong knowledge in modern
+    web technologies. I enjoy transforming ideas into real-world
+    applications with clean, scalable, and efficient code.
+  </p>
+  <button onclick="nextSection()">Next</button>
+</div>
+
+<!-- SKILLS -->
+<div class="section skills">
+  <h2>Skills</h2>
+  <ul>
+    <li>Java (Core & Backend)</li>
+    <li>React.js (Frontend)</li>
+    <li>Node.js & Express.js</li>
+    <li>SQL Database</li>
+    <li>HTML, CSS, JavaScript</li>
+  </ul>
+  <br>
+  <button onclick="nextSection()">Next</button>
+</div>
+
+<!-- PROJECT -->
+<div class="section">
+  <h2>Project</h2>
+  <div class="project">
+    <h3>Screenshot-to-Code</h3>
+    <p><strong>Objective:</strong> Automatically convert UI screenshots into working code.</p>
+    <p>
+      This project bridges the gap between design and development by
+      analyzing screenshots or mockups and generating corresponding
+      source code.
+    </p>
+    <p>
+      <strong>Technology:</strong> AI models analyze visual elements
+      such as layouts, text, buttons, and containers, then translate
+      them into HTML, CSS, and modern frameworks like React or Tailwind CSS.
+    </p>
+    <p>
+      <strong>Output:</strong> Clean, structured code that helps
+      developers and designers rapidly build prototypes and web pages.
+    </p>
+  </div>
+  <br>
+  <button onclick="nextSection()">Next</button>
+</div>
+
+<!-- CONTACT -->
+<div class="section">
+  <h2>Contact</h2>
+  <p><strong>Email:</strong> haridharan2325@gmail.com</p>
+  <p><strong>Phone:</strong> +91 9159369172</p>
+
+  <footer>
+    © 2026 Hari | Portfolio
+  </footer>
+</div>
+
+<script>
+/* Typing Effect */
+const text = "Full Stack Java Developer | React | Node.js";
+let index = 0;
+
+function typeEffect(){
+  if(index < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeEffect,80);
+  }
+}
+typeEffect();
+
+/* Section Navigation */
+const sections = document.querySelectorAll(".section");
+let current = 0;
+
+function nextSection(){
+  sections[current].classList.remove("active");
+  current++;
+  if(current < sections.length){
+    sections[current].classList.add("active");
+  }
+}
+</script>
 
 </body>
 </html>
