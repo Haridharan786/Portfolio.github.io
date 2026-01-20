@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hari | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #2563eb, #9333ea);
+      padding: 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+    }
+
+    header span {
+      color: #fde047;
+    }
+
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    h2 {
+      color: #60a5fa;
+      margin-bottom: 20px;
+    }
+
+    .skills ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .skills li {
+      background: #1e293b;
+      padding: 12px;
+      border-radius: 8px;
+      list-style: none;
+      text-align: center;
+    }
+
+    .project {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #020617;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header>
+    <div>
+      <h1>Hello, I'm <span>Hari</span></h1>
+      <p id="typing"></p>
+      <br>
+      <button onclick="scrollToSection('about')">Know More</button>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I am a motivated professional with skills in web design, desktop publishing,
+      and business-related projects. I enjoy learning new technologies and creating
+      clean, user-friendly designs.
+    </p>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>HTML & CSS</li>
+      <li>JavaScript</li>
+      <li>MS Word, Excel, PowerPoint</li>
+      <li>Desktop Publishing</li>
+      <li>Basic Design Tools</li>
+    </ul>
+  </section>
+
+  <!-- PROJECTS -->
+  <section>
+    <h2>Projects</h2>
+    <div class="project">
+      <h3>Consumer Satisfaction on Toothpaste</h3>
+      <p>
+        A research project analyzing customer satisfaction, preferences,
+        and buying behavior using survey data.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section>
+    <h2>Contact</h2>
+    <p>Email: yourmail@gmail.com</p>
+  </section>
+
+  <footer>
+    <p>© 2026 Hari | Portfolio</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Typing Effect
+    const text = "Web Designer | Developer | Creative Thinker";
+    let index = 0;
+
+    function typeEffect() {
+      if (index < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 80);
+      }
+    }
+    typeEffect();
+
+    // Smooth Scroll
+    function scrollToSection(id) {
+      document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+</body>
+</html>
