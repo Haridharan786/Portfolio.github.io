@@ -1,242 +1,284 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Hari | Full Stack Developer</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Hari web Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- REAL TECH ICONS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
+    <style>
+        :root {
+            --primary: #60a5fa;
+            --accent: #fde047;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
 
-/* Body */
-body{
-  color:#e5e7eb;
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Video Background */
-.bg-video{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-2;
-}
+        body {
+            background: #020617;
+            color: #e2e8f0;
+            font-family: 'cambria', Roboto, sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: none; 
+        }
 
-/* Dark Overlay */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:rgba(15,23,42,0.85);
-  z-index:-1;
-}
+        /* --- BACKGROUND --- */
+        .bg-video {
+            position: fixed; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover; z-index: -2;
+            opacity: 0.2;
+        }
 
-/* Sections */
-.section{
-  display:none;
-  max-width:900px;
-  padding:40px 20px;
-  text-align:center;
-}
+        .overlay {
+            position: fixed; inset: 0;
+            background: radial-gradient(circle at center, transparent 0%, #020617 100%);
+            z-index: -1;
+        }
 
-.section.active{
-  display:block;
-}
+        /* --- CURSOR --- */
+        #cursor {
+            width: 20px; height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: fixed;
+            top: 0; left: 0;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+        }
 
-h1{
-  font-size:3rem;
-}
+        /* --- CONTAINER --- */
+        .section-container {
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-h2{
-  color:#60a5fa;
-  margin-bottom:20px;
-}
+        .section {
+            position: absolute;
+            max-width: 750px;
+            width: 90%;
+            padding: 40px;
+            text-align: center;
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none; 
+            transform: scale(0.9) translateY(30px);
+        }
 
-span{
-  color:#fde047;
-}
+        .section.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: scale(1) translateY(0);
+            z-index: 10;
+        }
 
-p{
-  line-height:1.6;
-  margin-bottom:20px;
-}
+        h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin-bottom: 10px; }
+        h2 { color: var(--primary); font-size: 2.2rem; margin-bottom: 20px; }
+        span { color: var(--accent); text-shadow: 0 0 20px rgba(253, 224, 71, 0.3); }
+        p { line-height: 1.6; color: #94a3b8; font-size: 1rem; }
 
-/* Skills */
-.skills ul{
-  list-style:none;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-}
+        /* --- SKILLS GRID --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 12px; margin: 20px 0;
+        }
 
-.skills li{
-  background:#1e293b;
-  padding:15px;
-  border-radius:14px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:14px;
-  font-size:1.05rem;
-}
+        .skill-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
 
-.skills i{
-  font-size:2rem;
-}
+        .skill-card i { font-size: 1.8rem; display: block; margin-bottom: 5px; color: var(--primary); }
 
-/* Project */
-.project{
-  background:#1e293b;
-  padding:25px;
-  border-radius:18px;
-  text-align:left;
-}
+        /* --- BUTTON GROUP --- */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
 
-/* Buttons */
-button{
-  background:#2563eb;
-  color:white;
-  border:none;
-  padding:12px 30px;
-  border-radius:30px;
-  cursor:pointer;
-  font-size:1rem;
-  transition:0.3s;
-}
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: none;
+            transition: 0.3s;
+        }
 
-button:hover{
-  background:#1d4ed8;
-}
+        .btn-back {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border);
+        }
 
-/* Footer */
-footer{
-  margin-top:30px;
-  font-size:0.9rem;
-  color:#94a3b8;
-}
-</style>
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.4);
+        }
+
+        .project-box {
+            text-align: left;
+            padding: 20px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            border-left: 4px solid var(--accent);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        footer { margin-top: 25px; font-size: 0.75rem; opacity: 0.4; }
+    </style>
 </head>
-
 <body>
 
-<!-- VIDEO BACKGROUND -->
+<div id="cursor"></div>
+
 <video class="bg-video" autoplay muted loop playsinline>
-  <source src="bg.mp4" type="video/mp4">
+    <source src="bg.mp4" type="video/mp4">
 </video>
+<div class="overlay"></div>
 
-<!-- HERO -->
-<div class="section active">
-  <h1>Hello, I'm <span>Hari</span></h1>
-  <p id="typing"></p>
-  <br>
-  <button onclick="nextSection()">Know More</button>
+<div class="section-container">
+    <div class="section active" id="s1">
+        <h1>I am <span>Haridharan</span></h1>
+        <p id="typing" style="min-height: 1.8em;"></p>
+        <div class="btn-group">
+            <button class="btn" onclick="showSection('s2', 'next')">Explore My World</button>
+        </div>
+    </div>
+
+    <div class="section" id="s2">
+        <h2>The Mission</h2>
+        <p>IT graduate with completed training in web development and computer applications. Familiar with React js, Node js, and basic project work. Actively seeking an entry-level IT position to gain industry experience.</p>
+        <div class="btn-group">
+            <button class="btn btn-back" onclick="showSection('s1', 'prev')">Back</button>
+            <button class="btn" onclick="showSection('s3', 'next')">View Skills</button>
+        </div>
+    </div>
+
+    <div class="section" id="s3">
+        <h2>Tech Stack</h2>
+        <div class="skills-grid">
+            <div class="skill-card"><i class="devicon-java-plain"></i>Java</div>
+            <div class="skill-card"><i class="devicon-react-original"></i>React</div>
+            <div class="skill-card"><i class="devicon-nodejs-plain"></i>Node.js</div>
+            <div class="skill-card"><i class="devicon-mysql-plain"></i>SQL</div>
+            <div class="skill-card"><i class="devicon-javascript-plain"></i>JS</div>
+            <div class="skill-card"><i class="devicon-css3-plain"></i>CSS3</div>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-back" onclick="showSection('s2', 'prev')">Back</button>
+            <button class="btn" onclick="showSection('s4', 'next')">Latest Project</button>
+        </div>
+    </div>
+
+    <div class="section" id="s4">
+        <h2>Featured Work</h2>
+        <div class="project-box">
+            <h3 style="color:var(--accent); margin-bottom:10px;">Screenshot-to-Code</h3>
+            <p><strong>Objective:</strong> Bridge the gap between design and development by generating code from image inputs.</p><br>
+            <p><strong>Technology:</strong> AI-driven analysis identifying design elements like buttons and layouts to translate into markup.</p><br>
+            <p><strong>Output:</strong> Generates HTML, CSS, and Tailwind code for rapid prototyping.</p>
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-back" onclick="showSection('s3', 'prev')">Back</button>
+            <button class="btn" onclick="showSection('s5', 'next')">Get In Touch</button>
+        </div>
+    </div>
+
+    <div class="section" id="s5">
+        <h2>Connect</h2>
+        <p>Email: <br><span style="font-size: 1.2rem; color:#fff;">haridharan2325@gmail.com</span></p>
+        <br>
+        <p>Phone: <br><span style="font-size: 1.2rem; color:#fff;">+91 9159369172</span></p>
+        <div class="btn-group">
+            <button class="btn btn-back" onclick="showSection('s4', 'prev')">Back</button>
+            <button class="btn" onclick="showSection('s1', 'next')">Home</button>
+        </div>
+        <footer>© 2026 Hari | Full Stack Developer</footer>
+    </div>
 </div>
 
-<!-- ABOUT -->
-<div class="section">
-  <h2>About Me</h2>
-  <p>
-    I am a Full Stack Java Developer with strong knowledge in modern
-    frontend and backend technologies. I enjoy building scalable,
-    efficient, and user-friendly applications.
-  </p>
-  <button onclick="nextSection()">Next</button>
-</div>
-
-<!-- SKILLS -->
-<div class="section skills">
-  <h2>Skills</h2>
-  <ul>
-    <li><i class="devicon-java-plain"></i> Java</li>
-    <li><i class="devicon-react-original"></i> React.js</li>
-    <li><i class="devicon-nodejs-plain"></i> Node.js</li>
-    <li><i class="devicon-express-original"></i> Express.js</li>
-    <li><i class="devicon-mysql-plain"></i> SQL (MySQL)</li>
-    <li><i class="devicon-html5-plain"></i> HTML5</li>
-    <li><i class="devicon-css3-plain"></i> CSS3</li>
-    <li><i class="devicon-javascript-plain"></i> JavaScript</li>
-  </ul>
-  <br>
-  <button onclick="nextSection()">Next</button>
-</div>
-
-<!-- PROJECT -->
-<div class="section">
-  <h2>Project</h2>
-  <div class="project">
-    <h3>Screenshot-to-Code</h3>
-    <p><strong>Objective:</strong> Convert UI screenshots into usable source code.</p>
-    <p>
-      This project bridges the gap between design and development by
-      analyzing screenshots or mockups and identifying UI elements
-      such as layouts, text, and buttons.
-    </p>
-    <p>
-      <strong>Technology:</strong> AI models process visual data and
-      translate it into structured markup.
-    </p>
-    <p>
-      <strong>Output:</strong> Generates HTML, CSS, and framework-ready
-      code such as React or Tailwind CSS for rapid prototyping.
-    </p>
-  </div>
-  <br>
-  <button onclick="nextSection()">Next</button>
-</div>
-
-<!-- CONTACT -->
-<div class="section">
-  <h2>Contact</h2>
-  <p><strong>Email:</strong> haridharan2325@gmail.com</p>
-  <p><strong>Phone:</strong> +91 9159369172</p>
-
-  <footer>
-    © 2026 Hari | Full Stack Developer
-  </footer>
-</div>
-
-<!-- JAVASCRIPT -->
 <script>
-/* Typing Effect */
-const text = "Full Stack Java Developer | React | Node.js";
-let index = 0;
+    // 1. Cursor Movement
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => {
+        gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+    });
 
-function typeEffect(){
-  if(index < text.length){
-    document.getElementById("typing").innerHTML += text.charAt(index);
-    index++;
-    setTimeout(typeEffect,80);
-  }
-}
-typeEffect();
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 3, background: "#fde047", opacity: 0.5 }));
+        btn.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, background: "#60a5fa", opacity: 1 }));
+    });
 
-/* Section Navigation */
-const sections = document.querySelectorAll(".section");
-let current = 0;
+    // 2. Typing Effect
+    const text = "Full Stack Java Developer | UI Designer ";
+    let i = 0;
+    function typeEffect() {
+        if (i < text.length) {
+            document.getElementById("typing").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typeEffect, 50);
+        }
+    }
+    typeEffect();
 
-function nextSection(){
-  sections[current].classList.remove("active");
-  current++;
-  if(current < sections.length){
-    sections[current].classList.add("active");
-  }
-}
+    // 3. Navigation with Directional Logic
+    function showSection(targetId, direction) {
+        const currentActive = document.querySelector('.section.active');
+        
+        // Define animation values based on direction
+        const outY = direction === 'next' ? -50 : 50;
+        const inY = direction === 'next' ? 50 : -50;
+
+        // Animate Out
+        gsap.to(currentActive, {
+            opacity: 0,
+            scale: 0.8,
+            y: outY,
+            duration: 0.4,
+            onComplete: () => {
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                
+                const target = document.getElementById(targetId);
+                target.classList.add('active');
+                
+                // Animate In
+                gsap.fromTo(target, 
+                    { opacity: 0, scale: 1.1, y: inY },
+                    { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "power2.out" }
+                );
+            }
+        });
+    }
 </script>
 
 </body>
